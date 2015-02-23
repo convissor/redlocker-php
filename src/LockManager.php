@@ -78,6 +78,7 @@ class LockManager
 			// see if there are any sockets we can read from or write to
 			if (socket_select($read, $write, $except, 0) === false) {
 				$code = @socket_last_error();
+				$this->debug('! error selecting from sockets: '. $code .' '. socket_strerror($code));
 				throw new \Exception('Error selecting from sockets: '. $code .' '. socket_strerror($code));
 			}
 			
